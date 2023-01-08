@@ -7,7 +7,7 @@ var maxWidth = 0;
 var randomLines = [];
 
 const lineWidth = 0.5; // it looks like it is the smalles size | investigate
-const lineOffset = 0.6;
+const lineOffset = lineWidth + 0.1;
 
 const whiteColor = '#FFFFFF'
 const defaultLineColor = '#FF0000'
@@ -24,12 +24,16 @@ class Line
 window.onload = function()
 {
   ResizeCanvas();
-
   GenerateRandomLines();
-
   DrawLinesOnCanvas();
 
-  window.setInterval(SwapRandomLines, 50);
+  InitBubbleSort(window);
+}
+
+function OnFinished()
+{
+  console.log("Finished!");
+  canvas.style.borderColor="#00FF00"
 }
 
 function SwapRandomLines()

@@ -3,10 +3,41 @@
   margin: 0px;
   padding: 0px;
   overflow: hidden;
+
+  background-color: #EEEDE7
 }
 
 .visCanvas
 {
-  width: 100vw;
-  height: 100vh;
+  width: calc(100vw - 10px - 4px);
+  height: calc(85vh - 2px);
+
+  margin-left: 2px;
+  margin-right: 2px;
+  margin-top: 2px;
+
+  border: 5px;
+  border-style: solid;
+  border-radius: 5px;
+}
+
+.backButton
+{
+  width: calc(20vw - 10px);
+  height: 10vh;
+
+  margin-left: 40vw;
+  margin-right: 40vw;
+
+  border: 5px;
+  border-style: solid;
+  border-radius: 10px;
+
+  font-size: 20px;
+  background-color: #B9B7BD;
+}
+
+.backButtonText
+{
+  background-color: #B9B7BD;
 }
