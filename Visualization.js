@@ -27,7 +27,8 @@ window.onload = function()
   GenerateRandomLines();
   DrawLinesOnCanvas();
 
-  InitBubbleSort(window);
+  //InitBubbleSort(window);
+  InitQuickSort(window);
 }
 
 function OnFinished()
