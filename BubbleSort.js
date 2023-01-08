@@ -1,44 +1,31 @@
-var intervalID = null;
+var arrayCopy = null;
 
-function InitBubbleSort(window)
+function InitBubbleSort()
 {
-  intervalID = window.setInterval(BubbleSortStep, 1);
+  arrayCopy = [...randomLines];
+  SetLineOperationInterval(1);
+  BubbleSort();
+  OnFinishedSortingAlgorithm();
 }
 
-var i = 0;
-var j = 0;
-
-function BubbleSortStep()
+function BubbleSort()
 {
-  var swappedLines = false;
-
-  if (randomLines[i].yPercent < randomLines[j].yPercent)
+  for (let i = 0; i < arrayCopy.length; i++)
   {
-    SwapLines(i, j);
-    window.clearInterval(intervalID);
-    swappedLines = true;
+    for (let j = i + 1; j < arrayCopy.length; j++)
+    {
+      if (arrayCopy[i].yPercent > arrayCopy[j].yPercent)
+      {
+        Swap(i, j);
+      }
+    }
   }
+}
 
-  j++;
-
-  if (j >= randomLines.length)
-  {
-    j = 0;
-    i++;
-  }
-
-  if (i >= randomLines.length)
-  {
-    window.clearInterval(intervalID);
-    OnFinished();
-  }
-
-  if (swappedLines)
-  {
-    intervalID = window.setInterval(BubbleSortStep, 1);
-  }
-  else
-  {
-    BubbleSortStep();
-  }
+function Swap(leftIndex, rightIndex)
+{
+  AddLineSwapData(leftIndex, rightIndex);
+  var temp = arrayCopy[leftIndex];
+  arrayCopy[leftIndex] = arrayCopy[rightIndex];
+  arrayCopy[rightIndex] = temp;
 }

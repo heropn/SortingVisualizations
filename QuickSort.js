@@ -1,19 +1,18 @@
-var intervalID = null;
+var arrayCopy = null;
 
-var array = [5,3,7,6,2,9,31,61,7,2,76,1476,316,1,0,1,6,1,76,1,76,1,54,31,75,1,671];
-
-function InitQuickSort(window)
+function InitQuickSort()
 {
-  console.log(array);
-  QuickSort(0, array.length - 1);
-  console.log(array);
+  arrayCopy = [...randomLines];
+  SetLineOperationInterval(50);
+  QuickSort(0, arrayCopy.length - 1);
+  OnFinishedSortingAlgorithm();
 }
 
 function QuickSort(left, right)
 {
     var index;
 
-    if (array.length > 1)
+    if (arrayCopy.length > 1)
     {
         index = Partition(left, right);
 
@@ -30,37 +29,38 @@ function QuickSort(left, right)
 
 function Partition(left, right)
 {
-  var pivot = array[Math.floor((right + left) / 2)];
+  var pivot = arrayCopy[Math.floor((right + left) / 2)];
 
-  i = left;
-  j = right;
+  var l = left;
+  var r = right;
 
-  while (i <= j)
+  while (l <= r)
   {
-    while (array[i] < pivot)
+    while (arrayCopy[l].yPercent < pivot.yPercent)
     {
-        i++;
+        l++;
     }
 
-    while (array[j] > pivot)
+    while (arrayCopy[r].yPercent > pivot.yPercent)
     {
-        j--;
+        r--;
     }
 
-    if (i <= j)
+    if (l <= r)
     {
-        swap(i, j); //swap two elements
-        i++;
-        j--;
+        Swap(l, r);
+        l++;
+        r--;
     }
   }
 
-  return i;
+  return l;
 }
 
-function swap(leftIndex, rightIndex)
+function Swap(i, j)
 {
-    var temp = array[leftIndex];
-    array[leftIndex] = array[rightIndex];
-    array[rightIndex] = temp;
+  AddLineSwapData(i, j);
+  var temp = arrayCopy[i];
+  arrayCopy[i] = arrayCopy[j];
+  arrayCopy[j] = temp;
 }

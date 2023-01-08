@@ -6,11 +6,34 @@ var maxWidth = 0;
 
 var randomLines = [];
 
+var lineOperations = [];
+
 const lineWidth = 0.5; // it looks like it is the smalles size | investigate
 const lineOffset = lineWidth + 0.1;
 
 const whiteColor = '#FFFFFF'
 const defaultLineColor = '#FF0000'
+
+var lineOperationIntervalHandle = null;
+var stopSwapingAtEnd = false;
+
+class LineValueChangeData
+{
+  constructor(lineIndex, newYPercentage)
+  {
+    this.lineIndex = lineIndex;
+    this.newYPercentage = newYPercentage;
+  }
+}
+
+class LineSwapData
+{
+  constructor(indexOne, indexTwo)
+  {
+    this.indexOne = indexOne;
+    this.indexTwo = indexTwo;
+  }
+}
 
 class Line
 {
@@ -27,22 +50,27 @@ window.onload = function()
   GenerateRandomLines();
   DrawLinesOnCanvas();
 
-  //InitBubbleSort(window);
-  InitQuickSort(window);
+  //InitBubbleSort();
+  //InitMergeSort();
+  //InitQuickSort();
+  //InitHeapSort();
+  //InitCocktailSort();
+  InitGnomeSort();
+
+  if (lineOperationIntervalHandle == null)
+  {
+    SetLineOperationInterval(50);
+  }
 }
 
 function OnFinished()
 {
-  console.log("Finished!");
   canvas.style.borderColor="#00FF00"
 }
 
-function SwapRandomLines()
+function OnFinishedSortingAlgorithm()
 {
-  var firstIdx = Math.floor(Math.random() * randomLines.length);
-  var secondIdx = Math.floor(Math.random() * randomLines.length);
-
-  SwapLines(firstIdx, secondIdx);
+  stopSwapingAtEnd = true;
 }
 
 function DrawLinesOnCanvas()
@@ -53,15 +81,57 @@ function DrawLinesOnCanvas()
   }
 }
 
-function SwapLines(firstIndex, secondIndex)
+function AddLineValueChangeData(lineIndex, newYPercentage)
 {
+  lineOperations.push(new LineValueChangeData(lineIndex, newYPercentage));
+}
+
+function AddLineSwapData(indexOne, indexTwo)
+{
+  lineOperations.push(new LineSwapData(indexOne, indexTwo));
+}
+
+function SetLineOperationInterval(time)
+{
+  if (lineOperationIntervalHandle == null)
+  {
+    lineOperationIntervalHandle = window.setInterval(HandleLineOperation, time);
+  }
+  else
+  {
+    console.log("Swapping interval is already set!");
+  }
+}
+
+function HandleLineOperation()
+{
+  if (lineOperations.length == 0)
+  {
+    return;
+  }
+
+  var lineOperation = lineOperations.shift();
+
   ClearCanvas();
 
-  var temp = randomLines[firstIndex];
-  randomLines[firstIndex] = randomLines[secondIndex];
-  randomLines[secondIndex] = temp;
+  if (lineOperation.constructor.name == "LineSwapData")
+  {
+    var temp = randomLines[lineOperation.indexOne];
+    randomLines[lineOperation.indexOne] = randomLines[lineOperation.indexTwo];
+    randomLines[lineOperation.indexTwo] = temp;
+  }
+  else if (lineOperation.constructor.name == "LineValueChangeData")
+  {
+    randomLines[lineOperation.lineIndex].yPercent = lineOperation.newYPercentage;
+  }
 
   DrawLinesOnCanvas();
+
+  if (lineOperations.length == 0 && stopSwapingAtEnd)
+  {
+    window.clearInterval(lineOperationIntervalHandle);
+    OnFinished();
+  }
 }
 
 function DrawLineAtIndex(index)
@@ -101,7 +171,6 @@ function GenerateRandomLines()
 
   for (let i = 0; i < linesToGenerate; i++)
   {
-    //Math.max(Math.random(), 0.01) * maxHeight
     randomLines.push(new Line(Math.max(Math.random(), 0.01), defaultLineColor));
   }
 }
