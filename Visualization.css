@@ -2,7 +2,7 @@
 {
   margin: 0px;
   padding: 0px;
-  overflow: hidden;
+  overflow-x: hidden;
 
   background: linear-gradient(143deg, #393f4d, #1d1e22);
   background-size: 400% 400%;
@@ -53,6 +53,7 @@
 
 .backButtonText
 {
+  font-family: sans-serif;
   color: #E0C05E;
   background-color: transparent;
 }

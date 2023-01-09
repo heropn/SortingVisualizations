@@ -42,7 +42,7 @@ button
 
 h1
 {
-  font-family: cursive;
+  font-family: sans-serif;
   color: #E0C05E;
   text-shadow: black 0px 0px 7px;
   text-align: center;
@@ -51,7 +51,7 @@ h1
 
 p
 {
-  font-family: cursive;
+  font-family: sans-serif;
   font-size: 20px;
   color: #E0C05E;
   text-shadow: black 0px 0px 7px;
