@@ -9,11 +9,11 @@ var randomLines = [];
 
 var lineOperations = [];
 
-const lineWidth = 0.5; // it looks like it is the smalles size | investigate
+const lineWidth = 0.5;
 const lineOffset = lineWidth + 0.1;
 
 const whiteColor = '#FFFFFF'
-const defaultLineColor = '#F54032'
+const defaultLineColor = '#FFB800'
 
 var lineOperationIntervalHandle = null;
 var stopSwapingAtEnd = false;
@@ -78,7 +78,7 @@ window.onload = function()
 
 function OnFinished()
 {
-  canvas.style.borderColor="#00FF00"
+  canvas.style.borderColor = "#5FFF33"
 }
 
 function OnFinishedSortingAlgorithm()
