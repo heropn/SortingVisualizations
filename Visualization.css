@@ -23,11 +23,11 @@
 
 .backButton
 {
-  width: calc(20vw - 10px);
+  width: calc(30vw - 10px);
   height: 10vh;
 
-  margin-left: 40vw;
-  margin-right: 40vw;
+  margin-left: 35vw;
+  margin-right: 35vw;
 
   border: 5px;
   border-style: solid;

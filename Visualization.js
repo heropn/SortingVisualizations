@@ -1,5 +1,6 @@
 var canvas = document.querySelector('.visCanvas');
 var context = canvas.getContext('2d');
+var backButton = document.querySelector('.backButton');
 
 var maxHeight = 0;
 var maxWidth = 0;
@@ -12,7 +13,7 @@ const lineWidth = 0.5; // it looks like it is the smalles size | investigate
 const lineOffset = lineWidth + 0.1;
 
 const whiteColor = '#FFFFFF'
-const defaultLineColor = '#FF0000'
+const defaultLineColor = '#F54032'
 
 var lineOperationIntervalHandle = null;
 var stopSwapingAtEnd = false;
@@ -44,22 +45,34 @@ class Line
   }
 }
 
+backButton.addEventListener('click', () => {
+  document.location.href = "Menu.php";
+});
+
 window.onload = function()
 {
   ResizeCanvas();
   GenerateRandomLines();
   DrawLinesOnCanvas();
 
-  //InitBubbleSort();
-  //InitMergeSort();
-  //InitQuickSort();
-  //InitHeapSort();
-  //InitCocktailSort();
-  InitGnomeSort();
+  const sortingAlgorithmsDict = {
+    "Bubble Sort" : InitBubbleSort,
+    "Merge Sort" : InitMergeSort,
+    "Quick Sort" : InitQuickSort,
+    "Heap Sort" : InitHeapSort,
+    "Gnome Sort" : InitGnomeSort,
+    "Cocktail Sort" : InitCocktailSort
+  };
 
-  if (lineOperationIntervalHandle == null)
+  var sortType = localStorage.getItem('sort');
+  if (sortType in sortingAlgorithmsDict)
   {
-    SetLineOperationInterval(50);
+    sortingAlgorithmsDict[sortType]();
+
+    if (lineOperationIntervalHandle == null)
+    {
+      SetLineOperationInterval(50);
+    }
   }
 }
 

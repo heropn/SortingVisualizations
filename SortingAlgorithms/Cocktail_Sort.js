@@ -5,7 +5,6 @@ function InitCocktailSort()
   arrayCopy = [...randomLines];
   SetLineOperationInterval(1);
   CocktailSort();
-  console.log(arrayCopy);
   OnFinishedSortingAlgorithm();
 }
 
