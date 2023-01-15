@@ -9,8 +9,8 @@ var randomLines = [];
 
 var lineOperations = [];
 
-const lineWidth = 0.5;
-const lineOffset = lineWidth + 0.1;
+const lineWidth = 3;
+const lineOffset = lineWidth + 0.3;
 
 const whiteColor = '#FFFFFF'
 const defaultLineColor = '#FFB800'
@@ -180,10 +180,10 @@ function ClearCanvas()
 
 function ResizeCanvas()
 {
-  const scale = window.devicePixelRatio;
-  maxHeight = canvas.height / scale;
-  maxWidth = canvas.width / scale;
-  context.scale(scale, scale);
+  maxHeight = window.innerHeight;
+  maxWidth = window.innerWidth;
+  canvas.width = maxWidth;
+  canvas.height = maxHeight;
 }
 
 function GenerateRandomLines()
