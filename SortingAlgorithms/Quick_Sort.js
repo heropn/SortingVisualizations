@@ -48,19 +48,11 @@ function Partition(left, right)
 
     if (l <= r)
     {
-        Swap(l, r);
+        Swap(arrayCopy, l, r);
         l++;
         r--;
     }
   }
 
   return l;
-}
-
-function Swap(i, j)
-{
-  AddLineSwapData(i, j);
-  var temp = arrayCopy[i];
-  arrayCopy[i] = arrayCopy[j];
-  arrayCopy[j] = temp;
 }

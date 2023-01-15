@@ -22,7 +22,7 @@ function CocktailSort()
     {
       if (arrayCopy[i].yPercent > arrayCopy[i + 1].yPercent)
       {
-        Swap(i, i + 1);
+        Swap(arrayCopy, i, i + 1);
         swapped = true;
       }
     }
@@ -39,19 +39,11 @@ function CocktailSort()
     {
       if (arrayCopy[i].yPercent > arrayCopy[i + 1].yPercent)
       {
-        Swap(i, i + 1);
+        Swap(arrayCopy, i, i + 1);
         swapped = true;
       }
     }
 
     start = start + 1;
   }
-}
-
-function Swap(i, j)
-{
-  AddLineSwapData(i, j);
-  var temp = arrayCopy[i];
-  arrayCopy[i] = arrayCopy[j];
-  arrayCopy[j] = temp;
 }

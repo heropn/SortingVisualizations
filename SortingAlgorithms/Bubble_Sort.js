@@ -16,16 +16,8 @@ function BubbleSort()
     {
       if (arrayCopy[i].yPercent > arrayCopy[j].yPercent)
       {
-        Swap(i, j);
+        Swap(arrayCopy, i, j);
       }
     }
   }
-}
-
-function Swap(leftIndex, rightIndex)
-{
-  AddLineSwapData(leftIndex, rightIndex);
-  var temp = arrayCopy[leftIndex];
-  arrayCopy[leftIndex] = arrayCopy[rightIndex];
-  arrayCopy[rightIndex] = temp;
 }

@@ -1,0 +1,43 @@
+*
+{
+  margin: 0px;
+  padding: 0px;
+  overflow-x: hidden;
+
+  background: linear-gradient(143deg, #393f4d, #1d1e22);
+  background-size: 400% 400%;
+  animation: gradient 10s ease infinite;
+
+  font-family: sans-serif;
+}
+
+@media screen and (orientation:portrait)
+{
+  @keyframes gradient
+  {
+    0% { background-position:48% 0% }
+    50% {background-position:100% 53% }
+    100% { background-position:48% 0% }
+  }
+}
+
+@media screen and (orientation:landscape)
+{
+  @keyframes gradient
+  {
+    0% { background-position:48% 0% }
+    50% {background-position:53% 100% }
+    100% { background-position:48% 0% }
+  }
+}
+
+button
+{
+  border-radius: 20px;
+  border: 3px;
+  border-style: solid;
+  box-shadow: 3px 2px 5px black;
+  border-color: #d4d4dc;
+
+  background: linear-gradient(#1d1e22, #393f4d);
+}

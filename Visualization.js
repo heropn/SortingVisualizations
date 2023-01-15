@@ -104,6 +104,14 @@ function AddLineSwapData(indexOne, indexTwo)
   lineOperations.push(new LineSwapData(indexOne, indexTwo));
 }
 
+function Swap(arr, i, j)
+{
+  AddLineSwapData(i, j);
+  var temp = arr[i];
+  arr[i] = arr[j];
+  arr[j] = temp;
+}
+
 function SetLineOperationInterval(time)
 {
   if (lineOperationIntervalHandle == null)

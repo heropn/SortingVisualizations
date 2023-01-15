@@ -17,7 +17,7 @@ function HeapSort()
 
   for (var i = arrayCopy.length - 1; i > 0; i--)
   {
-    Swap(0, i);
+    Swap(arrayCopy, 0, i);
     Heapify(i, 0);
   }
 }
@@ -40,15 +40,7 @@ function Heapify(size, root)
 
   if (largest != root)
   {
-    Swap(largest, root);
+    Swap(arrayCopy, largest, root);
     Heapify(size, largest);
   }
-}
-
-function Swap(i, j)
-{
-  AddLineSwapData(i, j);
-  var temp = arrayCopy[i];
-  arrayCopy[i] = arrayCopy[j];
-  arrayCopy[j] = temp;
 }

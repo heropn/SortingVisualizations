@@ -20,18 +20,10 @@ function GnomeSort()
     }
     else
     {
-      Swap(index, index - 1);
+      Swap(arrayCopy, index, index - 1);
       index = Math.max(index - 1, 1);
     }
   }
 
   return;
-}
-
-function Swap(i, j)
-{
-  AddLineSwapData(i, j);
-  var temp = arrayCopy[i];
-  arrayCopy[i] = arrayCopy[j];
-  arrayCopy[j] = temp;
 }
